@@ -1,12 +1,11 @@
-let num = Array.length Sys.argv in
-if num > 1 then
-let arg = int_of_string Sys.argv.(1) in 
-print_int (arg);
-print_newline ();
-print_int (666);
-else
-begin
-print_int (0);
-print_newline ();
-print_int (337);
-end
+let ways = 
+let num = Array.length (Sys.argv) in
+	begin
+	if num = 2 then
+	Array.make_matrix (int_of_string Sys.argv.(1)) (int_of_string Sys.argv.(1)) 0
+	else
+	Array.make_matrix (int_of_string Sys.argv.(1)) (int_of_string Sys.argv.(2)) 0
+	end;;
+
+print_int (Array.length ways);;
+print_newline ();;
