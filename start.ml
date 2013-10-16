@@ -42,12 +42,14 @@ let num = Array.length (Sys.argv) in
 	else
 	Array.make_matrix (int_of_string Sys.argv.(1)) (int_of_string Sys.argv.(2)) 0;
 	end;;
+
+print_string ("Create ways \n");;
 	
 let vwall = Array.make_matrix (Array.length ways) (Array.length ways.(0)) false;;
 
-let hwall = Array.make_matrix (Array.length ways) ((Array.length ways.(0)) - 1) false;;
+let hwall = Array.make_matrix (Array.length ways) (Array.length ways.(0)) false;;
 
-
+print_string ("Create walls \n");;
 	
 (*	
 let door = [| 0; 0|] and outcome = outpoint in	
@@ -57,11 +59,44 @@ let rec track filed door outcome =
 		{ 2, _} || { _, 1} 
 *)	
 	
+let resetmaze () = 
+let numy = Array.length ways.(0) and numx = Array.length ways in 
+	Array.fill ways 0  numx (Array.make numy 0);;	
+	
 	
 ways.(0).(0) <- 5;;
 ways.(3).(2) <- 8;;
 print_int (ways.(0).(0));;
 print_char ('X');
 print_newline ();;
+
+(*
+
+let
+	v1 = Array.map (Array.map (fun x ->  Random.bool ())) vwall
+and
+	v2 = Array.map (Array.map (fun x ->  Random.bool ())) hwall
+in
+Переменные для тестов вывода стенок
+*)
+
 show ways vwall hwall;;
 print_newline ();;
+
+
+Random.init;;
+for i = 0 to (Array.length ways - 1) do
+	for j = 0 to (Array.length ways.(0) -1) do ways.(i).(j) <- Random.int 7 done
+	done;;
+	
+	
+	
+
+show ways vwall hwall;;
+print_newline ();;
+
+resetmaze ();;
+show ways vwall hwall;;
+print_newline ();;
+
+
